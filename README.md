@@ -136,6 +136,28 @@ python -m unittest discover -s tests
 
 ---
 
+## 🇷🇺 Краткая инструкция на русском
+
+1. **Мгновенный буст активности на сегодня (20 коммитов)**:
+   ```bash
+   python painter.py --today 20 --repo boost-repo
+   cd boost-repo
+   git remote add origin https://github.com/<ЛОГИН>/<РЕПО>.git
+   git branch -M main
+   git push -u origin main --force
+   ```
+2. **Просмотр пиксель-арта в консоли**:
+   ```bash
+   python painter.py --art invader --preview
+   python painter.py --text "DEV" --preview
+   ```
+3. **Генерация коммитов для GitHub**:
+   ```bash
+   python painter.py --art invader --paint --repo my-canvas
+   ```
+
+---
+
 ## 📜 License
 
 MIT License. Free to use, modify, and star! ⭐
