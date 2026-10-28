@@ -481,9 +481,9 @@ def place_on_canvas(matrix: list[list[int]], offset_col: int = 0, repeat: bool =
     return canvas
 
 
-def print_canvas_preview(canvas: list[list[int]], title: str = "GitHub Contribution Preview"):
+def print_canvas_preview(canvas: list[list[int]], title: str = "Предпросмотр графика активности GitHub"):
     """Render the 7x52 canvas nicely in terminal using ANSI colors."""
-    day_labels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+    day_labels = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"]
     print("\n" + "=" * 62)
     print(f"  {title}")
     print("=" * 62)
@@ -494,8 +494,8 @@ def print_canvas_preview(canvas: list[list[int]], title: str = "GitHub Contribut
     print("-" * 62)
     total_active_days = sum(1 for r in range(7) for c in range(52) if canvas[r][c] > 0)
     total_commits = sum(INTENSITY_COMMIT_MAP.get(canvas[r][c], 0) for r in range(7) for c in range(52))
-    print(f"Active Days: {total_active_days} | Estimated Commits: {total_commits}")
-    print("Legend: " + " ".join(f"L{lvl}:{ANSI_COLORS[lvl]}" for lvl in range(5)))
+    print(f"Активных дней: {total_active_days} | Ожидаемых коммитов: {total_commits}")
+    print("Легенда: " + " ".join(f"Ур{lvl}:{ANSI_COLORS[lvl]}" for lvl in range(5)))
     print("=" * 62 + "\n")
 
 
@@ -548,7 +548,7 @@ def execute_commits(commit_tasks: list[tuple[datetime.date, int]], repo_path: Pa
     try:
         git_dir = repo_path / ".git"
         if not git_dir.exists():
-            print(f"📦 Initializing isolated git repository in: {repo_path}")
+            print(f"📦 Инициализация изолированного git-репозитория в: {repo_path}")
             subprocess.run(["git", "init"], check=True)
             subprocess.run(["git", "checkout", "-b", "main"], capture_output=True)
 
@@ -556,7 +556,7 @@ def execute_commits(commit_tasks: list[tuple[datetime.date, int]], repo_path: Pa
         total_created = 0
         total_days = len(commit_tasks)
 
-        print(f"🚀 Generating commits across {total_days} scheduled days...")
+        print(f"🚀 Генерация коммитов для {total_days} запланированных дней...")
 
         for idx, (dt, count) in enumerate(commit_tasks, 1):
             date_str = dt.strftime("%Y-%m-%dT12:00:00")
@@ -569,7 +569,7 @@ def execute_commits(commit_tasks: list[tuple[datetime.date, int]], repo_path: Pa
                     f.write(f"Commit at {date_str} #{c_idx + 1}\n")
 
                 subprocess.run(["git", "add", "activity.txt"], check=True, stdout=subprocess.DEVNULL)
-                commit_msg = f"chore: heatmap commit {dt.isoformat()} ({c_idx + 1}/{count})"
+                commit_msg = f"chore: активность {dt.isoformat()} ({c_idx + 1}/{count})"
                 subprocess.run(
                     ["git", "commit", "-m", commit_msg],
                     env=env,
@@ -580,12 +580,12 @@ def execute_commits(commit_tasks: list[tuple[datetime.date, int]], repo_path: Pa
                 total_created += 1
 
             if idx % 10 == 0 or idx == total_days:
-                print(f"  Progress: {idx}/{total_days} days processed ({total_created} commits created)")
+                print(f"  Прогресс: {idx}/{total_days} дней обработано ({total_created} коммитов создано)")
 
-        print(f"\n🎉 Successfully created {total_created} commits in {repo_path}!")
-        print("💡 Next step to show on your GitHub profile:")
+        print(f"\n🎉 Успешно создано {total_created} коммитов в {repo_path}!")
+        print("💡 Следующий шаг для отправки в профиль GitHub:")
         print(f"   cd \"{repo_path}\"")
-        print("   git remote add origin https://github.com/<YOUR-USERNAME>/<YOUR-REPO-NAME>.git")
+        print("   git remote add origin https://github.com/<ВАШ-НИК>/<ИМЯ-РЕПОЗИТОРИЯ>.git")
         print("   git push -u origin main --force")
     finally:
         os.chdir(orig_cwd)
@@ -595,15 +595,15 @@ def make_today_commits(count: int, repo_path: Path):
     """Quick booster: creates N commits for TODAY so the current day glows bright green."""
     today = datetime.date.today()
     tasks = [(today, count)]
-    print(f"🔥 Fast-Boost: Generating {count} commits for today ({today})...")
+    print(f"🔥 Быстрый буст: Создаем {count} коммитов на сегодня ({today})...")
     execute_commits(tasks, repo_path)
 
 
 def list_presets(presets_dir: Path):
     """List available presets."""
-    print("\n🎨 Available Presets:")
+    print("\n🎨 Доступные шаблоны:")
     if not presets_dir.exists():
-        print("  (Presets directory not found)")
+        print("  (Папка с шаблонами не найдена)")
         return
     for p in sorted(presets_dir.glob("*.txt")):
         print(f"  • {p.stem}")
@@ -611,17 +611,17 @@ def list_presets(presets_dir: Path):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Git Heatmap Painter - Draw pixel art & boost activity on GitHub")
-    parser.add_argument("--art", type=str, help="Name of art preset (e.g. invader, cat, heart, ghost, hi)")
-    parser.add_argument("--text", type=str, help="Render custom text onto the graph (e.g. 'HI', 'DEV')")
-    parser.add_argument("--today", type=int, help="Instantly create N commits for TODAY (e.g. --today 20)")
-    parser.add_argument("--year", type=int, help="Target specific year (default: rolling last 52 weeks)")
-    parser.add_argument("--col", type=int, default=None, help="Horizontal column offset (0-51). Default: centered")
-    parser.add_argument("--repeat", action="store_true", help="Repeat art across all 52 weeks")
-    parser.add_argument("--preview", action="store_true", help="Only preview in terminal, do not commit")
-    parser.add_argument("--paint", action="store_true", help="Actually generate git commits")
-    parser.add_argument("--repo", type=str, default="heatmap-canvas-repo", help="Target git repository folder")
-    parser.add_argument("--list", action="store_true", help="List available art presets")
+    parser = argparse.ArgumentParser(description="Git Heatmap Painter - Рисование пиксель-арта и буст активности на GitHub")
+    parser.add_argument("--art", type=str, help="Имя шаблона пиксель-арта (например: invader, cat, heart, ghost, hi, skull)")
+    parser.add_argument("--text", type=str, help="Нарисовать произвольный текст (например: 'HI', 'DEV')")
+    parser.add_argument("--today", type=int, help="Мгновенно создать N коммитов на СЕГОДНЯ (например: --today 20)")
+    parser.add_argument("--year", type=int, help="Целевой конкретный год (по умолчанию: текущие 52 недели)")
+    parser.add_argument("--col", type=int, default=None, help="Смещение по столбцам (0-51). По умолчанию: по центру")
+    parser.add_argument("--repeat", action="store_true", help="Повторять рисунок по всем 52 неделям")
+    parser.add_argument("--preview", action="store_true", help="Только предпросмотр в терминале, без создания коммитов")
+    parser.add_argument("--paint", action="store_true", help="Сгенерировать реальные git-коммиты")
+    parser.add_argument("--repo", type=str, default="heatmap-canvas-repo", help="Папка целевого git-репозитория")
+    parser.add_argument("--list", action="store_true", help="Показать список доступных шаблонов")
 
     args = parser.parse_args()
     script_dir = Path(__file__).resolve().parent
@@ -645,10 +645,10 @@ def main():
     # Prepare matrix
     if args.text:
         matrix = render_text_to_matrix(args.text)
-        art_title = f"Text: '{args.text}'"
+        art_title = f"Текст: '{args.text}'"
     else:
         matrix = load_preset(args.art, presets_dir)
-        art_title = f"Preset: '{args.art}'"
+        art_title = f"Пресет: '{args.art}'"
 
     art_width = len(matrix[0]) if matrix and matrix[0] else 0
     if args.col is None:
@@ -662,16 +662,16 @@ def main():
 
     if args.year:
         grid_dates = get_dates_for_canvas(args.year)
-        mode_str = f"Year {args.year}"
+        mode_str = f"Год {args.year}"
     else:
         grid_dates = get_dates_for_rolling_year()
-        mode_str = "Rolling 52 Weeks (Live Profile View)"
+        mode_str = "Текущие 52 недели (главная страница профиля)"
 
-    print(f"Target Mode: {mode_str}")
+    print(f"Целевой режим: {mode_str}")
 
     if not args.paint:
-        print("ℹ️  Running in preview mode. To generate commits, pass '--paint'.")
-        print(f"👉 Example: python painter.py {'--art ' + args.art if args.art else '--text \"' + args.text + '\"'} --paint")
+        print("ℹ️  Запущен режим предпросмотра. Чтобы сгенерировать коммиты, добавьте '--paint'.")
+        print(f"👉 Пример: python painter.py {'--art ' + args.art if args.art else '--text \"' + args.text + '\"'} --paint")
         return
 
     # Build tasks

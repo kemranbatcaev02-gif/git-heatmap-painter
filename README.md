@@ -2,115 +2,116 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.8+"/>
-  <img src="https://img.shields.io/badge/Dependencies-Zero-success?style=for-the-badge" alt="Zero Dependencies"/>
-  <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="MIT License"/>
-  <img src="https://img.shields.io/badge/PRs-Welcome-brightgreen?style=for-the-badge" alt="PRs Welcome"/>
+  <img src="https://img.shields.io/badge/Зависимости-Ноль-success?style=for-the-badge" alt="Без зависимостей"/>
+  <img src="https://img.shields.io/badge/Лицензия-MIT-blue?style=for-the-badge" alt="Лицензия MIT"/>
+  <img src="https://img.shields.io/badge/PR-Приветствуются-brightgreen?style=for-the-badge" alt="PRs Welcome"/>
 </p>
 
-> Turn your boring GitHub contribution graph into an 8-bit canvas or boost your daily activity to neon green with a single command! 🚀
+> Превратите свой график контрибьюций на GitHub в 8-битный холст или мгновенно прокачайте активность до максимального неоново-зеленого цвета одной командой! 🚀
 
 ---
 
-## ✨ Features
+## ✨ Возможности
 
-- 👾 **Built-in Pixel Art Presets**: Invaders, Cats, Hearts, Ghosts, and more.
-- 🔤 **Custom Text Renderer**: Type any text (`HELLO`, `DEV`, `404`) and it gets converted to a 7-row pixel font automatically.
-- 🔥 **Fast Activity Booster (`--today N`)**: Need today to glow bright neon green with 20 commits right now? One flag does it all.
-- 🌈 **4-Level Green Heatmap Simulation**: True-to-life GitHub intensity simulation (1 to 12 commits per cell).
-- 🖥️ **ANSI Terminal Preview**: See exactly how your canvas looks before writing a single commit.
-- ⚡ **Zero External Dependencies**: Uses only standard Python library (`sys`, `subprocess`, `datetime`, `argparse`). Works on Windows, macOS, and Linux out-of-the-box.
-- 🛡️ **Safe & Isolated**: Generates commits into a clean target repo without altering your existing repositories.
+- 👾 **Встроенные пиксель-арт шаблоны**: Космический пришелец, Котик, Сердечко, Привидение, Череп и другие.
+- 🔤 **Генератор текста**: Напишите любой текст (`ПРИВЕТ`, `DEV`, `404`), и встроенный 7-строчный пиксельный шрифт перенесет его на холст.
+- 🔥 **Быстрый буст активности (`--today N`)**: Нужно, чтобы сегодняшний квадратик на GitHub сразу горел максимальным неоново-зеленым цветом (20 коммитов)? Один флаг сделает всё за секунду.
+- 🌈 **Эмуляция 4 уровней зеленого цвета**: Полное соответствие градации GitHub (от 1 до 12 коммитов на ячейку для передачи полутонов).
+- 🖥️ **Красивый предпросмотр в терминале**: Наглядный вывод в ANSI-цветах до создания реальных коммитов.
+- ⚡ **Ноль сторонних библиотек**: Написан на стандартной библиотеке Python (`sys`, `subprocess`, `datetime`, `argparse`). Работает на Windows, macOS и Linux без всяких `pip install`.
+- 🛡️ **Безопасность и изоляция**: Генерирует коммиты в отдельную целевую папку и не трогает ваши существующие проекты.
 
 ---
 
-## 📺 Terminal Preview
+## 📺 Предпросмотр в консоли
 
 ```text
 ==============================================================
-  Preset: 'invader'
+  Пресет: 'invader'
 ==============================================================
      00        10        20        30        40        50
-Sun  ░░░░░░░░░░░░░░░░░░░░░░█░░░░░█░░░░░░░░░░░░░░░░░░░░░░░
-Mon  ░░░░░░░░░░░░░░░░░░░░░░░█░░░█░░░░░░░░░░░░░░░░░░░░░░░░
-Tue  ░░░░░░░░░░░░░░░░░░░░░░███████░░░░░░░░░░░░░░░░░░░░░░░
-Wed  ░░░░░░░░░░░░░░░░░░░░░██░███░██░░░░░░░░░░░░░░░░░░░░░░
-Thu  ░░░░░░░░░░░░░░░░░░░░███████████░░░░░░░░░░░░░░░░░░░░░
-Fri  ░░░░░░░░░░░░░░░░░░░░█░███████░█░░░░░░░░░░░░░░░░░░░░░
-Sat  ░░░░░░░░░░░░░░░░░░░░█░█░░░░░█░█░░░░░░░░░░░░░░░░░░░░░
+Вс   ░░░░░░░░░░░░░░░░░░░░░░█░░░░░█░░░░░░░░░░░░░░░░░░░░░░░
+Пн   ░░░░░░░░░░░░░░░░░░░░░░░█░░░█░░░░░░░░░░░░░░░░░░░░░░░░
+Вт   ░░░░░░░░░░░░░░░░░░░░░░███████░░░░░░░░░░░░░░░░░░░░░░░
+Ср   ░░░░░░░░░░░░░░░░░░░░░██░███░██░░░░░░░░░░░░░░░░░░░░░░
+Чт   ░░░░░░░░░░░░░░░░░░░░███████████░░░░░░░░░░░░░░░░░░░░░
+Пт   ░░░░░░░░░░░░░░░░░░░░█░███████░█░░░░░░░░░░░░░░░░░░░░░
+Сб   ░░░░░░░░░░░░░░░░░░░░█░█░░░░░█░█░░░░░░░░░░░░░░░░░░░░░
 --------------------------------------------------------------
-Active Days: 42 | Estimated Commits: 504
+Активных дней: 42 | Всего сгенерированных коммитов: 504
 ```
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Быстрый старт
 
-### 1. Fast Activity Boost for Today (20 commits)
+### 1. Мгновенный буст активности на сегодня (20 коммитов)
 
-Want your GitHub square today to turn maximum neon green immediately?
+Хотите, чтобы сегодняшний день в профиле загорелся ярким неоновым цветом прямо сейчас?
 
 ```bash
 python painter.py --today 20 --repo my-activity-repo
 ```
 
-Then push to GitHub:
+Затем отправляем в GitHub:
 ```bash
 cd my-activity-repo
-git remote add origin https://github.com/<YOUR-USERNAME>/<ANY-EMPTY-REPO>.git
+git remote add origin https://github.com/<ВАШ-НИК>/<ИМЯ-РЕПОЗИТОРИЯ>.git
 git branch -M main
 git push -u origin main --force
 ```
 
-### 2. Preview Art in Terminal
+### 2. Предпросмотр рисунка в терминале
 
 ```bash
-# Preview built-in pixel art
+# Просмотр встроенных шаблонов
 python painter.py --art invader --preview
 python painter.py --art cat --preview
 python painter.py --art heart --preview
 python painter.py --art ghost --preview
+python painter.py --art skull --preview
 
-# Preview custom text
+# Просмотр произвольного текста
 python painter.py --text "HI" --preview
 python painter.py --text "DEV" --preview
 ```
 
-### 3. Paint and Generate Commits
+### 3. Рисование и генерация коммитов
 
 ```bash
-# Paint on the live rolling 52-week profile window
+# Рисуем на текущем скользящем 52-недельном окне (видно на главной профиля)
 python painter.py --art invader --paint --repo canvas-repo
 
-# Paint for a specific historical year (e.g. 2025)
+# Рисуем на конкретном историческом годе (например, 2025)
 python painter.py --art heart --year 2025 --paint --repo canvas-repo
 ```
 
-### 4. Push to Your GitHub Profile
+### 4. Публикация в свой профиль GitHub
 
-1. Create a new repository on [GitHub](https://github.com/new) (can be **public** or **private** — make sure *"Include private contributions"* is checked in your profile settings if private).
-2. Push your generated canvas:
+1. Создайте новый репозиторий на [GitHub](https://github.com/new) (можно **публичный** или **приватный** — если приватный, убедитесь, что в настройках профиля включена опция *"Include private contributions"*).
+2. Загрузите созданный холст:
 
 ```bash
 cd canvas-repo
-git remote add origin https://github.com/<YOUR-USERNAME>/<REPO-NAME>.git
+git remote add origin https://github.com/<ВАШ-НИК>/<ИМЯ-РЕПОЗИТОРИЯ>.git
 git branch -M main
 git push -u origin main --force
 ```
 
-Refresh your profile page and admire your new pixel art! 🎉
+Обновите страницу профиля и любуйтесь новым рисунком! 🎉
 
 ---
 
-## 🎨 Creating Custom Presets
+## 🎨 Создание собственных шаблонов
 
-Create a text file in `presets/your_art.txt` with up to 7 lines:
-- `.` or ` ` = 0 commits (blank)
-- `1` = 1 commit (light green)
-- `2` = 3 commits (medium green)
-- `3` = 6 commits (dark green)
-- `4` or `#` = 12 commits (bright neon green)
+Создайте текстовый файл в папке `presets/имя_арта.txt` размером до 7 строк:
+- `.` или пробел = 0 коммитов (пусто)
+- `1` = 1 коммит (светло-зеленый)
+- `2` = 3 коммита (средне-зеленый)
+- `3` = 6 коммитов (темно-зеленый)
+- `4` или `#` = 12 коммитов (максимально яркий неоновый зеленый)
 
-Example:
+Пример:
 ```text
  #   # 
 ### ###
@@ -121,14 +122,14 @@ Example:
   ###  
 ```
 
-Run:
+Запуск предпросмотра:
 ```bash
-python painter.py --art your_art --preview
+python painter.py --art имя_арта --preview
 ```
 
 ---
 
-## 🧪 Testing
+## 🧪 Запуск тестов
 
 ```bash
 python -m unittest discover -s tests
@@ -136,28 +137,6 @@ python -m unittest discover -s tests
 
 ---
 
-## 🇷🇺 Краткая инструкция на русском
+## 📜 Лицензия
 
-1. **Мгновенный буст активности на сегодня (20 коммитов)**:
-   ```bash
-   python painter.py --today 20 --repo boost-repo
-   cd boost-repo
-   git remote add origin https://github.com/<ЛОГИН>/<РЕПО>.git
-   git branch -M main
-   git push -u origin main --force
-   ```
-2. **Просмотр пиксель-арта в консоли**:
-   ```bash
-   python painter.py --art invader --preview
-   python painter.py --text "DEV" --preview
-   ```
-3. **Генерация коммитов для GitHub**:
-   ```bash
-   python painter.py --art invader --paint --repo my-canvas
-   ```
-
----
-
-## 📜 License
-
-MIT License. Free to use, modify, and star! ⭐
+Распространяется под свободной лицензией MIT.

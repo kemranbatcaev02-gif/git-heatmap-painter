@@ -1,12 +1,12 @@
-# Presets Guide
+# Руководство по шаблонам пиксель-арта
 
-Place `.txt` files in this directory to create custom heatmap presets.
+Поместите файлы `.txt` в эту папку, чтобы добавить собственные шаблоны для графика активности.
 
-## Rules:
-- Up to 7 lines (each line corresponds to a day of the week, starting with Sunday).
-- Use numbers `0` to `4` or symbols:
-  - `.` or ` ` = Empty (0 commits)
-  - `1` or `░` = Light green (1 commit)
-  - `2` or `▒` = Medium green (3 commits)
-  - `3` or `▓` = Deep green (6 commits)
-  - `4` or `█` or `#` = Maximum bright green (12 commits)
+## Правила:
+- До 7 строк (каждая строка соответствует дню недели, начиная с воскресенья).
+- Используйте цифры от `0` до `4` или символы:
+  - `.` или пробел = Пусто (0 коммитов)
+  - `1` или `░` = Светло-зеленый (1 коммит)
+  - `2` или `▒` = Средне-зеленый (3 коммита)
+  - `3` или `▓` = Темно-зеленый (6 коммитов)
+  - `4` или `█` или `#` = Максимально яркий зеленый (12 коммитов)
